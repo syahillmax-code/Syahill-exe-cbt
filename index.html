@@ -45,3 +45,405 @@
       border-radius: 50%;
       display: flex;
       align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+      font-size: 32px;
+      color: white;
+      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+    }
+    .portal-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: #f8fafc;
+      margin-bottom: 6px;
+    }
+    .portal-subtitle {
+      font-size: 13px;
+      color: #94a3b8;
+      margin-bottom: 24px;
+    }
+    .input-group {
+      text-align: left;
+      margin-bottom: 16px;
+    }
+    .input-group label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: #cbd5e1;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .input-group input {
+      width: 100%;
+      padding: 12px 14px;
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 8px;
+      color: #f8fafc;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .input-group input:focus {
+      border-color: #38bdf8;
+    }
+    .btn-submit {
+      width: 100%;
+      padding: 13px;
+      background: linear-gradient(135deg, #0284c7, #2563eb);
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-weight: 700;
+      font-size: 15px;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: opacity 0.2s, transform 0.1s;
+    }
+    .btn-submit:active {
+      transform: scale(0.98);
+    }
+    .status-msg {
+      margin-top: 14px;
+      font-size: 13px;
+      min-height: 18px;
+    }
+    .status-msg.error { color: #f87171; }
+    .status-msg.success { color: #4ade80; }
+
+    /* Top Bar Ujian PC */
+    #pcTopBar {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 52px;
+      background: #0f172a;
+      border-bottom: 2px solid #334155;
+      color: #fff;
+      z-index: 999999;
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      box-sizing: border-box;
+    }
+    .btn-exit {
+      background: #dc2626;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 13px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .quote-text {
+      color: #38bdf8;
+      font-weight: 600;
+      font-size: 14px;
+      text-align: center;
+      flex-grow: 1;
+    }
+    .right-tools {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .btn-refresh {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 7px 12px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 13px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .timer-badge {
+      background: #1e293b;
+      border: 1px solid #475569;
+      padding: 6px 12px;
+      border-radius: 6px;
+      color: #facc15;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0.5px;
+    }
+
+    /* Container Browser WebView Ujian */
+    #pcExamContainer {
+      display: none;
+      position: fixed;
+      top: 52px;
+      left: 0;
+      width: 100%;
+      height: calc(100vh - 52px);
+      z-index: 999998;
+      background: #ffffff;
+    }
+    #pcWebview {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* Modal Dialog PIN Keluar */
+    #pcPinModal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.75);
+      z-index: 1000000;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-box {
+      background: #1e293b;
+      border: 1px solid #475569;
+      padding: 24px;
+      border-radius: 12px;
+      width: 320px;
+      text-align: center;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
+    }
+    .modal-box h3 {
+      font-size: 18px;
+      margin-bottom: 6px;
+      color: #f8fafc;
+    }
+    .modal-box p {
+      font-size: 13px;
+      color: #94a3b8;
+      margin-bottom: 16px;
+    }
+    .modal-box input {
+      width: 85%;
+      padding: 10px;
+      font-size: 20px;
+      text-align: center;
+      border-radius: 8px;
+      border: 1px solid #475569;
+      background: #0f172a;
+      color: #f8fafc;
+      outline: none;
+      letter-spacing: 4px;
+      margin-bottom: 18px;
+    }
+    .modal-btns {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+    .btn-modal-cancel {
+      padding: 8px 16px;
+      background: #334155;
+      color: #f8fafc;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .btn-modal-confirm {
+      padding: 8px 18px;
+      background: #dc2626;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PORTAL MASUK UJIAN -->
+  <div class="portal-card" id="portalCard">
+    <div class="portal-logo"><i class="fa-solid fa-graduation-cap"></i></div>
+    <h1 class="portal-title">Syahilll CBT</h1>
+    <p class="portal-subtitle">Secure Exam Browser - ABSM</p>
+
+    <div class="input-group">
+      <label><i class="fa-solid fa-link"></i> Link Google Form / Ujian</label>
+      <input type="text" id="txtExamUrl" placeholder="https://docs.google.com/forms/d/e/..." autocomplete="off">
+    </div>
+
+    <div class="input-group">
+      <label><i class="fa-solid fa-key"></i> Token / PIN Keluar</label>
+      <input type="text" id="txtPinData" placeholder="1234567 atau PIN_KELUAR#PIN_PENGAWAS" value="1234567">
+    </div>
+
+    <div class="input-group">
+      <label><i class="fa-solid fa-clock"></i> Durasi (Menit)</label>
+      <input type="number" id="txtDuration" value="70">
+    </div>
+
+    <button class="btn-submit" id="btnStartExam"><i class="fa-solid fa-shield-halved"></i> Mulai Ujian</button>
+    <div class="status-msg" id="statusMsg"></div>
+  </div>
+
+  <!-- TOP BAR UJIAN PC -->
+  <div id="pcTopBar">
+    <button class="btn-exit" id="btnExitExamPC"><i class="fa-solid fa-lock"></i> KELUAR</button>
+    <div class="quote-text" id="pcQuote">🛡️ Mr. Syahill is watching you!!</div>
+    <div class="right-tools">
+      <button class="btn-refresh" id="btnReloadPC"><i class="fa-solid fa-rotate-right"></i> Muat Ulang</button>
+      <div class="timer-badge" id="pcTimerDisplay">⏳ 01:10:00</div>
+    </div>
+  </div>
+
+  <!-- WEBVIEW LEMBAR UJIAN -->
+  <div id="pcExamContainer">
+    <webview id="pcWebview" src="about:blank"></webview>
+  </div>
+
+  <!-- MODAL PIN KELUAR -->
+  <div id="pcPinModal">
+    <div class="modal-box">
+      <h3>🔒 Keluar Sesi Ujian</h3>
+      <p>Masukkan PIN Pengawas atau PIN Keluar:</p>
+      <input type="password" id="txtPinInput" maxlength="12" placeholder="••••">
+      <div class="modal-btns">
+        <button class="btn-modal-cancel" id="btnCancelPin">Batal</button>
+        <button class="btn-modal-confirm" id="btnConfirmPin">Konfirmasi</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let currentExitPin = "1234567";
+    let currentPengawasPin = "1234";
+    let timerInterval = null;
+    let quoteInterval = null;
+
+    const motivationalQuotes = [
+      "🛡️ Mr. Syahill is watching you!!",
+      "🚫 Jangan nyontek ya! Prestasi jujur itu berkah!",
+      "✨ Semangat ujiannya, kerjakan dengan teliti!",
+      "👀 Ingat, Allah Maha Melihat & Mr. Syahill mengawasi!",
+      "💡 Jujur itu juara, percaya pada kemampuan sendiri!",
+      "⚠️ Dilarang lirik kanan-kiri, tetap fokus ke layarmu!",
+      "🌸 Bismillah, tenang dan raih hasil terbaik!",
+      "🎯 Kejujuran mencerminkan karakter santri hebat!"
+    ];
+
+    // Fungsi Menjalankan Ujian di PC
+    function startExamOnPC(url, pinData, duration) {
+      if (!url || !url.startsWith("http")) {
+        showStatus("Masukkan tautan URL ujian yang valid!", true);
+        return;
+      }
+
+      if (pinData && pinData.includes("#")) {
+        const parts = pinData.split("#");
+        currentExitPin = parts[0].trim();
+        currentPengawasPin = parts[1].trim();
+      } else if (pinData) {
+        currentExitPin = pinData.trim();
+      }
+
+      // Tampilkan Antarmuka Ujian & Sembunyikan Form Awal
+      document.getElementById('portalCard').style.display = 'none';
+      document.getElementById('pcTopBar').style.display = 'flex';
+      document.getElementById('pcExamContainer').style.display = 'block';
+
+      // Muat URL Google Form ke WebView
+      const wv = document.getElementById('pcWebview');
+      wv.src = url;
+
+      // Jalankan Timer
+      let totalSeconds = (parseInt(duration) || 70) * 60;
+      clearInterval(timerInterval);
+      timerInterval = setInterval(() => {
+        if (totalSeconds > 0) {
+          totalSeconds--;
+          const h = Math.floor(totalSeconds / 3600);
+          const m = Math.floor((totalSeconds % 3600) / 60);
+          const s = totalSeconds % 60;
+          document.getElementById('pcTimerDisplay').innerText = 
+            `⏳ ${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+        } else {
+          document.getElementById('pcTimerDisplay').innerText = "⏳ WAKTU HABIS";
+          clearInterval(timerInterval);
+          alert("Waktu pengerjaan ujian telah berakhir!");
+        }
+      }, 1000);
+
+      // Jalankan Rotasi Kata Motivasi Tiap 3 Menit
+      let qIdx = 0;
+      clearInterval(quoteInterval);
+      quoteInterval = setInterval(() => {
+        qIdx = (qIdx + 1) % motivationalQuotes.length;
+        document.getElementById('pcQuote').innerText = motivationalQuotes[qIdx];
+      }, 3 * 60 * 1000);
+    }
+
+    function showStatus(text, isError) {
+      const el = document.getElementById('statusMsg');
+      el.innerText = text;
+      el.className = isError ? 'status-msg error' : 'status-msg success';
+    }
+
+    // Tombol Mulai Ujian dari Portal
+    document.getElementById('btnStartExam').onclick = () => {
+      const url = document.getElementById('txtExamUrl').value.trim();
+      const pin = document.getElementById('txtPinData').value.trim();
+      const dur = document.getElementById('txtDuration').value.trim();
+      startExamOnPC(url, pin, dur);
+    };
+
+    // Tombol Muat Ulang WebView
+    document.getElementById('btnReloadPC').onclick = () => {
+      const wv = document.getElementById('pcWebview');
+      wv.reload();
+    };
+
+    // Dialog Modal Keluar
+    document.getElementById('btnExitExamPC').onclick = () => {
+      document.getElementById('txtPinInput').value = '';
+      document.getElementById('pcPinModal').style.display = 'flex';
+      document.getElementById('txtPinInput').focus();
+    };
+
+    document.getElementById('btnCancelPin').onclick = () => {
+      document.getElementById('pcPinModal').style.display = 'none';
+    };
+
+    // Validasi PIN Keluar
+    document.getElementById('btnConfirmPin').onclick = () => {
+      const entered = document.getElementById('txtPinInput').value.trim();
+      if (entered === currentExitPin || entered === currentPengawasPin) {
+        clearInterval(timerInterval);
+        clearInterval(quoteInterval);
+        document.getElementById('pcPinModal').style.display = 'none';
+        document.getElementById('pcTopBar').style.display = 'none';
+        document.getElementById('pcExamContainer').style.display = 'none';
+        document.getElementById('pcWebview').src = 'about:blank';
+        document.getElementById('portalCard').style.display = 'block';
+        showStatus("Sesi ujian berhasil diakhiri.", false);
+      } else {
+        alert("⚠️ PIN Salah! Hubungi pengawas untuk membuka kunci.");
+      }
+    };
+
+    // Dukungan Tombol Enter pada Kotak Input PIN
+    document.getElementById('txtPinInput').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        document.getElementById('btnConfirmPin').click();
+      }
+    });
+  </script>
+</body>
+</html>
