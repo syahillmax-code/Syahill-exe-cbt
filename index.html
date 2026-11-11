@@ -1,100 +1,47 @@
-<!-- TOP BAR UJIAN PC (HANYA AKTIF SAAT UJIAN) -->
-<div id="pcTopBar" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 50px; background: #0f172a; color: #fff; z-index: 999999; align-items: center; justify-content: space-between; padding: 0 20px; font-family: sans-serif; border-bottom: 2px solid #334155; box-sizing: border-box;">
-  <button id="btnExitExamPC" style="background: #ef4444; color: white; border: none; padding: 8px 18px; border-radius: 6px; font-weight: bold; cursor: pointer;">🔒 KELUAR</button>
-  <div style="color: #38bdf8; font-weight: bold; font-size: 14px;">🛡️ Mr. Syahill is watching you!!</div>
-  <div style="display: flex; align-items: center; gap: 15px;">
-    <button id="btnReloadPC" style="background: #3b82f6; color: white; border: none; padding: 6px 14px; border-radius: 6px; font-weight: bold; cursor: pointer;">🔄 Muat Ulang</button>
-    <div id="pcTimerDisplay" style="background: #1e293b; padding: 6px 12px; border-radius: 6px; font-weight: bold; color: #facc15; font-size: 14px;">⏳ 01:10:00</div>
-  </div>
-</div>
-
-<!-- CONTAINER WEBVIEW GOOGLE FORM -->
-<div id="pcExamContainer" style="display: none; position: fixed; top: 50px; left: 0; width: 100%; height: calc(100vh - 50px); z-index: 999998; background: #fff;">
-  <webview id="pcWebview" src="about:blank" style="width: 100%; height: 100%; border: none;"></webview>
-</div>
-
-<!-- MODAL DIALOG PIN KELUAR -->
-<div id="pcPinModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 1000000; align-items: center; justify-content: center;">
-  <div style="background: white; padding: 25px; border-radius: 12px; width: 320px; text-align: center; font-family: sans-serif; box-shadow: 0 10px 25px rgba(0,0,0,0.5);">
-    <h3 style="margin-top: 0; color: #1e293b;">🔒 Keluar Ujian</h3>
-    <p style="font-size: 13px; color: #64748b; margin-bottom: 15px;">Masukkan PIN Pengawas / Keluar:</p>
-    <input type="password" id="txtPinInput" style="width: 80%; padding: 10px; font-size: 18px; text-align: center; border: 2px solid #cbd5e1; border-radius: 6px; margin-bottom: 15px; outline: none;" placeholder="••••">
-    <div style="display: flex; justify-content: center; gap: 10px;">
-      <button id="btnCancelPin" style="padding: 8px 16px; border: 1px solid #cbd5e1; background: #f1f5f9; border-radius: 6px; cursor: pointer;">Batal</button>
-      <button id="btnConfirmPin" style="padding: 8px 18px; border: none; background: #ef4444; color: white; border-radius: 6px; font-weight: bold; cursor: pointer;">Keluar</button>
-    </div>
-  </div>
-</div>
-
-<script>
-  let currentExitPin = "1234567";
-  let currentPengawasPin = "1234";
-
-  // Hubungkan jembatan pemicu ujian PC
-  window.startExamOnPC = function(url, pinData, duration) {
-    if (pinData && pinData.includes('#')) {
-      const parts = pinData.split('#');
-      currentExitPin = parts[0].trim();
-      currentPengawasPin = parts[1].trim();
-    } else if (pinData) {
-      currentExitPin = pinData.trim();
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Syahilll CBT - Ujian Berbasis Komputer</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      color: #f8fafc;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
     }
 
-    document.getElementById('pcTopBar').style.display = 'flex';
-    document.getElementById('pcExamContainer').style.display = 'block';
-
-    const wv = document.getElementById('pcWebview');
-    wv.src = url;
-
-    // Timer hitung mundur
-    let totalSec = (duration || 70) * 60;
-    const timerElem = document.getElementById('pcTimerDisplay');
-    setInterval(() => {
-      if (totalSec > 0) {
-        totalSec--;
-        let h = Math.floor(totalSec / 3600);
-        let m = Math.floor((totalSec % 3600) / 60);
-        let s = totalSec % 60;
-        timerElem.innerText = `⏳ ${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
-      }
-    }, 1000);
-  };
-
-  // Muat Ulang Halaman Soal
-  document.getElementById('btnReloadPC').onclick = () => {
-    document.getElementById('pcWebview').reload();
-  };
-
-  // Tampilkan Modal Dialog PIN
-  document.getElementById('btnExitExamPC').onclick = () => {
-    document.getElementById('txtPinInput').value = '';
-    document.getElementById('pcPinModal').style.display = 'flex';
-    document.getElementById('txtPinInput').focus();
-  };
-
-  document.getElementById('btnCancelPin').onclick = () => {
-    document.getElementById('pcPinModal').style.display = 'none';
-  };
-
-  // Verifikasi PIN
-  document.getElementById('btnConfirmPin').onclick = () => {
-    const val = document.getElementById('txtPinInput').value.trim();
-    if (val === currentExitPin || val === currentPengawasPin) {
-      document.getElementById('pcPinModal').style.display = 'none';
-      document.getElementById('pcTopBar').style.display = 'none';
-      document.getElementById('pcExamContainer').style.display = 'none';
-      document.getElementById('pcWebview').src = 'about:blank';
-    } else {
-      alert('⚠️ PIN Salah! Hubungi pengawas ujian.');
+    /* Container Portal Login / Token */
+    .portal-card {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 16px;
+      padding: 32px 28px;
+      width: 90%;
+      max-width: 440px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      text-align: center;
+      position: relative;
+      z-index: 10;
     }
-  };
-
-  // Sesuaikan fungsi tombol submit token ujian agar memanggil startExamOnPC jika di PC
-  const originalStartExamUrl = window.AndroidBridge ? window.AndroidBridge.startExamUrl : null;
-  if (!originalStartExamUrl) {
-    window.AndroidBridge = window.AndroidBridge || {};
-    window.AndroidBridge.startExamUrl = function(url, pinData, duration) {
-      window.startExamOnPC(url, pinData, duration);
-    };
-  }
-</script>
+    .portal-logo {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, #38bdf8, #2563eb);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
