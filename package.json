@@ -1,0 +1,22 @@
+{
+  "name": "syahilll-cbt-pc",
+  "version": "1.0.0",
+  "description": "Syahilll CBT Desktop Kiosk Exam",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --win portable"
+  },
+  "devDependencies": {
+    "electron": "^30.0.0",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.absm.syahilllcbt",
+    "productName": "Syahilll CBT",
+    "win": {
+      "target": "portable",
+      "requestedExecutionLevel": "asInvoker"
+    }
+  }
+}
